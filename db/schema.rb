@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402153815) do
+ActiveRecord::Schema.define(version: 20170402155839) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 20170402153815) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
-    t.integer  "start_count"
+    t.integer  "start_count", default: 0
     t.time     "start_time"
     t.time     "end_time"
-    t.time     "total_time"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "total_time",  default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "project_id"
   end
 

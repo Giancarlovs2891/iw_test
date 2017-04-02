@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+getProject = (project) ->
+	"<option value='#{project.id}'> #{project.name}</option>"
+
+
+$(document).on "ajax:success", "form#project-form", (ev, data)->
+	console.log data
+	$("#task_project_id").append(getProject(data))
+	$("#project-form").trigger("reset")
+$(document).on "ajax:success", "form#project-form", (ev, data)->
+	console.log data
