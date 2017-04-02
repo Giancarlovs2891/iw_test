@@ -42,7 +42,7 @@
             <span class="badge time-control pointer-cursor" id="<%= task.id %>"><i id="btn-<%= task.id %>">play</i></span>
             <span class="badge no-bg-color"><i><%= Time.at(task.total_time).utc.strftime("%H:%M:%S") %></i></span>
             <span class="badge no-bg-color"><%= task.start_count %></span>
-            <%= task.name %> - <%= task.project_id %>
+            <%= task.name %>
           </li>
         <% end %>
 
