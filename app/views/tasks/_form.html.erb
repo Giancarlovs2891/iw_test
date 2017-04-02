@@ -11,38 +11,66 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :start_count %><br>
-    <%= f.number_field :start_count %>
-  </div>
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.time_select :start_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.time_select :end_time %>
-  </div>
-  <div class="field">
-    <%= f.label :total_time %><br>
-    <%= f.number_field :total_time %>
+  <div class="row">
+    <div class="col-lg-12 col-sm-12">
+      <div class="form-group">
+        <div class="field">
+          <%= f.text_field :name, {placeholder: "Task name", value: "", class: "form-control"} %>
+          <p class="pull-right pointer-cursor" id="show-task-complements">Show more</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-sm-2"></div>
   </div>
 
-  <div class="field">
-    <%= f.select(:project_id) do%>
-      <% if @projects.any? %>
-        <% @projects.each do |project| %>
-        <%= content_tag(:option, project.name, value: project.id) %>
-        <% end %>
-      <% end %>
-    <% end %>
+  <!-- hidden div for complete task information -->
+  <div id="task-complements" class="hidden">
+    <%= f.number_field :total_time, class: "form-control hidden" %>
+    <div class="row">
+      <div class="col-lg-3 col-sm-4">
+        <div class="form-group">
+          <label for="">Projects</label>
+          <%=f.select :project_id, options_from_collection_for_select(@projects, 'id', 'name'),{}, {class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-2">
+        <div class="form-group">
+          <label for="" style="color:#fff;">.</label>
+          <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">New project</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-2">
+        <div class="form-group">
+          <label for="">Hours</label>
+          <input type="number" value="00" class="form-control manual-time" id="hh" min="00" max="59">
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-2">
+        <div class="form-group">
+          <label for="">Minutes</label>
+          <input type="number" value="00" class="form-control manual-time" id="mm" min="00" max="59">
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-2">
+        <div class="form-group">
+          <label for="">Seconds</label>
+          <input type="number" value="00" class="form-control manual-time" id="ss" min="00" max="59">
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="row">
+    <div class="col-lg-4 col-sm-4 col-lg-offset-4 col-sm-offset-4">
+      <div class="form-group">
+        <div class="actions">
+          <%= f.submit "Play", id: "start-new-task", class: "btn btn-success form-control" %>
+          <a id="stop-current-task" class="btn btn-danger form-control hidden" hidden>Stop</a>
+        </div>
+      </div>
+    </div>
   </div>
+
 <% end %>

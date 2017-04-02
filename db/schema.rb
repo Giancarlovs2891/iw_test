@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402155839) do
+ActiveRecord::Schema.define(version: 20170402194507) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,17 +23,21 @@ ActiveRecord::Schema.define(version: 20170402155839) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
-# Could not dump table "projects" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        default: "Unnamed task"
     t.integer  "start_count", default: 0
-    t.time     "start_time"
-    t.time     "end_time"
     t.integer  "total_time",  default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "project_id"
   end
 

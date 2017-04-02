@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:twitter]
 
+  has_many :tasks, through: :projects
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
    identity = Identity.find_for_oauth(auth)
    user = signed_in_resource ? signed_in_resource : identity.user
@@ -25,6 +27,11 @@ class User < ActiveRecord::Base
        end
      end
      user.save!
+     project = Project.new(
+      name: "-No Project-",
+      user_id: user.id
+     )
+     project.save!
    end
 
    if identity.user != user

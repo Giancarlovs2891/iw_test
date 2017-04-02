@@ -3,9 +3,10 @@ class DashboardController < ApplicationController
     if user_signed_in?
       @task = Task.new
       @project = Project.new
-      @projects = Project.where(user: current_user).order("name ASC")
+      @projects = Project.where(user_id: current_user.id).order("name ASC")
       @tasks = Task.all.order("updated_at DESC")
-      # @tasks = Task.joins(:project).where(:projects => {user: current_user}).order("updated_at DESC")
+      # @tasks = current_user.project.task
+
     else
       redirect_to root_path
     end

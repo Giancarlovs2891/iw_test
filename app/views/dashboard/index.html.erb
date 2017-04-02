@@ -1,9 +1,36 @@
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+<div class="row">
+  <div class="col-lg-3 col-sm-3">
+    <div class="form-group">
+      <br>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+    </div>
+  </div>
+  <div class="col-lg-9 col-sm-9">
+    <div class="form-group">
+      <h2 class="pull-right">Current task time <span id="current-time-readable" >00:00:00</span></h2>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
 
 <%= render "tasks/form" %>
+
+<div class="row">
+  <div class="col-lg-4 col-sm-4 col-lg-offset-4 col-sm-offset-4">
+    <div class="form-group">
+      
+    </div>
+  </div>
+</div>
+
+
+
 <%= render "projects/form" %>
 
-<h1>Dashboard</h1>
+<h3>Tasks list</h3>
 
 <div class="row">
 
@@ -12,11 +39,10 @@
       <ul class="list-group" id="tasks-box">
         <% @tasks.each do |task| %>
           <li class="list-group-item">
-            <span class="badge red"><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-            <span class="badge red"><i>play</i></span>
-            <span class="badge"><i><%= task.total_time %></i></span>
-            <span class="badge "><%= task.start_count %></span>
-            <%= task.name %>
+            <span class="badge time-control pointer-cursor" id="<%= task.id %>"><i id="btn-<%= task.id %>">play</i></span>
+            <span class="badge no-bg-color"><i><%= Time.at(task.total_time).utc.strftime("%H:%M:%S") %></i></span>
+            <span class="badge no-bg-color"><%= task.start_count %></span>
+            <%= task.name %> - <%= task.project_id %>
           </li>
         <% end %>
 
