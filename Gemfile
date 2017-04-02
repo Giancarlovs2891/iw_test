@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 4.2', '>= 4.2.1'
+
 gem 'omniauth', '~> 1.6', '>= 1.6.1'
 gem 'omniauth-twitter', '~> 1.4'
 
