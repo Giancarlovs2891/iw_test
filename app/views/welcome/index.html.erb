@@ -1,9 +1,18 @@
-<h1>ideaware ROR Test</h1>
-
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-<% end %>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="text-center">IDEAWARE RoR TEST</h1>
+  </div>
+</div>
 <br>
-<%= link_to "Dashboard", "/dashboard" %>
+<hr>
+<div class="row">
+  <div class="col-lg-4 col-sm-4 col-lg-offset-4 col-sm-offset-4">
+    <div class="form-group">
+      <% if user_signed_in? %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Go to sign in page", new_user_session_path, class: "btn btn-primary form-control text-white" %>
+      <% end %>
+    </div>
+  </div>
+</div>
