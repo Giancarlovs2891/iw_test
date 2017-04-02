@@ -33,7 +33,7 @@
   </div>
 
   <div class="field">
-    <%= f.select("project_id") do%>
+    <%= f.select(:project_id) do%>
       <% @projects.each do |project| %>
         <%= content_tag(:option, project.name, value: project.id) %>
       <% end %>

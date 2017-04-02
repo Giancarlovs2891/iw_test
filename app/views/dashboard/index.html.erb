@@ -1,8 +1,7 @@
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-<% end %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+<%= render "tasks/form" %>
+<%= render "projects/form" %>
 
 <h1>Dashboard</h1>
 
@@ -13,7 +12,7 @@
       <ul class="list-group">
         <% @tasks.each do |task| %>
           <li class="list-group-item">
-            <span class="badge red"><%= link_to "X", task.destroy %></span>
+            <span class="badge red"><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></span>
             <span class="badge red"><i>play</i></span>
             <span class="badge"><i><%= task.total_time %></i></span>
             <span class="badge "><%= task.start_count %></span>
