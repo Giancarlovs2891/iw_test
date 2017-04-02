@@ -31,6 +31,15 @@
     <%= f.label :total_time %><br>
     <%= f.time_select :total_time %>
   </div>
+
+  <div class="field">
+    <%= f.select("project_id") do%>
+      <% @projects.each do |project| %>
+        <%= content_tag(:option, project.name, value: project.id) %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
