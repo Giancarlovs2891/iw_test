@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :start_count
       t.time :start_time
       t.time :end_time
-      t.time :total_time
+      t.integer :total_time
 
       t.timestamps null: false
     end
